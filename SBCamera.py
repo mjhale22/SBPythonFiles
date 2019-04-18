@@ -1,14 +1,11 @@
 #!/usr/bin/python
 
-#Moved all the imports to the top!
 import sys
 import time
 import datetime
 from sense_hat import SenseHat
 import Adafruit_DHT
 from picamera import PiCamera
-
-# Instead of doing this you can do import time and then use time.sleep when you want use sleep in your code
 from time import sleep
 
 # Time formatting
@@ -43,21 +40,12 @@ show_message_on_sensehat()
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 temperature = temperature * 9/5.0 + 32
 
-csvresult = open("/home/pi/Desktop/SpaceBalloonLog.csv","a")
+csvresult = open("/home/pi/Desktop/SpaceBalloonData.csv","a")
 csvresult.write("Log #" + "," + "Date" + "," "Time" + "," "Temperature (*F)" + "," "Humidity (%)" + "," "Pressure" + "," "Internal Temperature (*F)" + "," "Internal Humidity (%)" +  "," "Image Link" + "\n")
 csvresult.close
 
 Count = 1
 while(Count < 99999):
-# I think all of these are already defined up on top, no need to call them again!
-#    import time
-#    import datetime
-#    MyDateTime = datetime.datetime.now()
-#    Date = MyDateTime.strftime("%m/%d/%y")
-#    Time = MyDateTime.strftime("%H:%M:%S")
-#    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-#    temperature = temperature * 9/5.0 + 32
-
     pressure = sense.get_pressure()
     pressure = round(pressure, 2)
     humidin = sense.get_humidity()
@@ -68,10 +56,10 @@ while(Count < 99999):
 
     sleep(2)
     stamp = datetime.datetime.now().strftime("%m-%d-%Y_%H-%M-%S")
-    camera.capture("/home/pi/Space Balloon Pictures/" + stamp + ".jpg")
+    camera.capture("/home/pi/Desktop/Space Balloon Pictures/" + stamp + ".jpg")
 
-    csvresult = open("/home/pi/Desktop/SpaceBalloonLog.csv","a")
-    csvresult.write(('{}'.format(Count)) + "," + Date + "," + Time + "," + ('{0:0.1f}, {1:0.1f}'.format(temperature, humidity)) + "," + str(pressure) + "," + str(tempinf) + "," + str(humidin) + "," + "file:///home/pi/Space%20Balloon%20Pictures/" + stamp + ".jpg" + "\n")
+    csvresult = open("/home/pi/Desktop/SpaceBalloonData.csv","a")
+    csvresult.write(('{}'.format(Count)) + "," + Date + "," + Time + "," + ('{0:0.1f}, {1:0.1f}'.format(temperature, humidity)) + "," + str(pressure) + "," + str(tempinf) + "," + str(humidin) + "," + "file:///home/pi/Desktop/Space Balloon Pictures/" + stamp + ".jpg" + "\n")
     csvresult.close
     print("Data Logged")
     sense.set_pixel(0, 0, 76, 187, 23)
