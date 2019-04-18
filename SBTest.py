@@ -1,4 +1,4 @@
-No#!/usr/bin/python
+#!/usr/bin/python
  
 import sys
 import time
