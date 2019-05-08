@@ -1,5 +1,5 @@
 Recommended: Method 2: .bashrc
-<br />The second method to run a program on your Raspberry Pi at startup is to modify the .bashrc  file. With the .bashrc method, your python program will run on boot and also every time when a new terminal is opened, or when a new SSH connection is made. Put your command at the bottom of ‘/home/pi/.bashrc’. The program can be aborted with ‘ctrl-c’ while it is running!
+<br />This method to run a program on your Raspberry Pi at startup is to modify the .bashrc  file. With the .bashrc method, your python program will run on boot and also every time when a new terminal is opened.
 
 <br />In terminal type the following command:
 <br />sudo nano /home/pi/.bashrc
