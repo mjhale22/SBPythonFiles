@@ -1,3 +1,9 @@
+#PRIOR TO RUNNING, TYPE FOLLOWNING INTO TERMINAL:
+#   git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+#   sudo pip3 install Adafruit_DHT
+#   cd Adafruit_Python_DHT
+#   sudo apt-get update
+
 #!/usr/bin/python
 
 import sys
